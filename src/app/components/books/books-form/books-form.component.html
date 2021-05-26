@@ -1,0 +1,57 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form [formGroup]="BooksService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Book_Serial_Number*" formControlName="Book_Serial_Number" />
+      <mat-error>Please enter a Book_Serial_Number</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill"class="form-field">
+      <input matInput placeholder="Book_Name*" formControlName="Book_Name" />
+      <mat-error>Please enter a Book_Name</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill"class="form-field">
+      <input matInput placeholder="Book_Author*" formControlName="Book_Author" />
+      <mat-error>Please enter a Book_Author</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field>
+      <mat-label>select a Category</mat-label>
+      <mat-select formControlName="Book_Category">
+        <mat-option
+              *ngFor="let category of categories"
+              [value]="category._id"
+        >
+              {{ category.Category_Name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill"class="form-field">
+      <input matInput placeholder="Book_Publishing_House*" formControlName="Book_Publishing_House" />
+      <mat-error>Please enter a Book_Publishing_House</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    </mat-dialog-content>
+    <mat-divider></mat-divider>
+
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="BooksService.form.invalid"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

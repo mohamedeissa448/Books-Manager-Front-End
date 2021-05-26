@@ -1,0 +1,90 @@
+<div class="rxp-header-tool-box">
+    <ul class="nav navbar-nav rxp-header-tool-box-nav">
+      <div class="navbar-form search-form rxp-header-tool-search-box" id="navbar-search">
+          <input class="form-control rxp-search-text-box" (keyup)="applyFilter()" placeholder="Search for users..." 
+            type="text" autocomplete="off" [(ngModel)]="searchKey" value=""/>
+          <button class="btn btn-default" type="button">
+            <i class="icon-magnifier"></i>
+          </button>
+          <button class="btn btn-clear-text" *ngIf="searchKey" aria-label="Clear" (click)="onSearchClear()">
+            <mat-icon>close</mat-icon>
+          </button>
+      </div>
+      <li >
+        <a (click)="onAdd()" class="icon-menu d-none d-sm-block">
+          <i class="wi wi-day-sunny"></i> Add
+        </a>
+      </li>
+    </ul>
+  </div>
+  <div class="rxp-data-table-bg">
+    <table mat-table [dataSource]="users" class="mat-elevation-z8" matSort>
+      
+      <ng-container matColumnDef="User_Name">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.User_Name }}
+        </td>
+      </ng-container>
+      
+      <ng-container matColumnDef="User_Mobile">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Mobile</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.User_Mobile }}
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="User_Email">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>User_Email</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.User_Email }}
+        </td>
+      </ng-container>
+  
+      <ng-container matColumnDef="Actions">
+        <th mat-header-cell *matHeaderCellDef>Tools</th>
+        <td mat-cell *matCellDef="let element"  class="rxp-grid-three-btts">
+          <button class="btn btn-default mr-1" 
+            (click)="onEdit(element)" title="Edit" type="button">
+            <span class="sr-only">Edit</span>
+            <i class="icon-pencil"></i>
+          </button>
+          <button class="btn btn-default mr-1" 
+            (click)="resetPassword(element)" title="Rest Password" type="button"
+            >
+            <i class="icon-lock"></i>
+          </button>
+          <button class="btn btn-default mr-1" 
+            (click)="onDelete(element)" title="Delete User" type="button"
+            >
+            <i class="icon-lock"></i>
+          </button>
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="loading">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          Loading data...
+        </mat-footer-cell>
+      </ng-container>
+      <ng-container matColumnDef="noData">
+        <mat-footer-cell *matFooterCellDef colspan="6">
+          No data.
+        </mat-footer-cell>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      <mat-footer-row
+        *matFooterRowDef="['loading']"
+        [ngClass]="{ hide: users != null }"
+      ></mat-footer-row>
+    </table>
+  
+  </div>
+  <mat-paginator
+    [length]="100"
+    [pageSize]="20"
+    [pageSizeOptions]="[20, 25, 50, 100]"
+    showFirstLastButtons
+  >
+  </mat-paginator>
+  

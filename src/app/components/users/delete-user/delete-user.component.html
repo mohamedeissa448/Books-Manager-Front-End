@@ -1,0 +1,14 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form >
+    <p>Are you sure you want to delete the User ?</p>
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClose()">Close</button>
+    <button
+      mat-raised-button
+      mat-primary
+      (click)= "onSubmit()"
+    >
+      Delete
+    </button>
+  </mat-dialog-actions>
+</form>

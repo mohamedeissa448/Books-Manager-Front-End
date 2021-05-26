@@ -1,0 +1,32 @@
+<h2 mat-dialog-title>{{ title }}</h2>
+<form [formGroup]="CategoriesService.form" (ngSubmit)="onSubmit()">
+  <mat-dialog-content>
+
+    <mat-form-field class="form-field">
+      <input matInput placeholder="Category_Name*" formControlName="Category_Name" />
+      <mat-error>Please enter a Category_Name</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    <mat-form-field appearance="fill"class="form-field">
+      <input matInput placeholder="Category_Description*" formControlName="Category_Description" />
+      <mat-error>Please enter a Category_Description</mat-error>
+    </mat-form-field>
+    <mat-divider></mat-divider>
+
+    </mat-dialog-content>
+    <mat-divider></mat-divider>
+
+
+  <mat-dialog-actions>
+    <button mat-raised-button color="warn" (click)="onClear()">Clear</button>
+    <button
+      mat-raised-button
+      mat-primary
+      type="submit"
+      [disabled]="CategoriesService.form.invalid"
+    >
+      Submit
+    </button>
+  </mat-dialog-actions>
+</form>

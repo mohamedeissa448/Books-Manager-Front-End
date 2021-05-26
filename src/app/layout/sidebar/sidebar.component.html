@@ -1,0 +1,136 @@
+<div id="left-sidebar" class="sidebar" *ngIf="sidebarVisible">
+    <div class="sidebar-scroll">
+        <div class="user-account">
+            <img src="assets/images/user.png" class="rounded-circle user-photo" alt="User Profile Picture">
+            <div class="dropdown" ngbDropdown>
+                <span>Welcome,</span>
+                <a href="javascript:void(0);" class="dropdown-toggle user-name"
+                    ngbDropdownToggle><strong>{{authService.currentUser.User_Name}}</strong></a>
+            </div>
+            <hr>
+           
+        </div>
+        <!-- Nav tabs -->
+        <ul class="nav nav-tabs">
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active':navTab == 'menu'}" 
+                    (click)="changeNavTab('menu')" title="Menu">
+                    <i class="icon-grid"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active':navTab == 'setting'}" 
+                    (click)="changeNavTab('setting')" title="Setting">
+                    <i class="icon-wrench"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active':navTab == 'report'}"
+                    (click)="changeNavTab('report')" title="Reports">
+                    <i class="icon-bar-chart"></i>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [ngClass]="{'active':navTab == 'style'}" 
+                    (click)="changeNavTab('style')" title="Style">
+                    <i class="icon-puzzle"></i>
+                </a>
+            </li>
+        </ul>
+
+        <!-- Tab panes -->
+        <div class="tab-content p-l-0 p-r-0 rxp-side-tabs-content">
+            <div class="tab-pane" id="menu" [ngClass]="{'active':navTab == 'menu' || !navTab}">
+                <nav id="left-sidebar-nav" class="sidebar-nav">
+                    <ul id="main-menu" class="metismenu">
+                        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            [ngClass]="{ active: currentActiveMenu == 'dashboard' }">
+                            <a [routerLink]="['/dashboard/index']"><i class="icon-home"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+                        <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            [ngClass]="{ active: currentActiveMenu == 'Categories' }">
+                            <a [routerLink]="['/categories/manage-categories']"><i class="icon-home"></i>
+                                <span>Categories</span>
+                            </a>
+                        </li>
+                    
+                        <li 
+                            routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            [ngClass]="{ active: currentActiveMenu == 'Books' }">
+                            <a [routerLink]="['/books/manage-books']">
+                                <i class="icon-earphones-alt"></i>
+                                <span>Books</span>
+                            </a>
+                        </li>
+                        <li 
+                        routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }"
+                            [ngClass]="{ active: currentActiveMenu == 'Users' }">
+                            <a [routerLink]="['/users/manage-users']">
+                                <i class="icon-picture"></i>
+                                <span>Users</span>
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+            
+            <div class="tab-pane" id="setting" [ngClass]="{'active':navTab == 'setting'}">
+                <nav id="left-sidebar-nav" class="sidebar-nav">
+                    <ul id="main-menu" class="metismenu">
+                    </ul>
+                </nav>
+            </div>
+           
+            <div class="tab-pane p-l-15 p-r-15" id="style" [ngClass]="{'active':navTab == 'style'}">
+                <h6>Choose Mode</h6>
+                <ul class="choose-skin list-unstyled">
+                    <li data-theme="white" [ngClass]="{'active':darkClass == ''}" (click)="changeDarkMode('')">
+                        <div class="white"></div>
+                        <span>Light</span>
+                    </li>
+                    <li data-theme="black" [ngClass]="{'active':darkClass == 'full-dark'}"
+                        (click)="changeDarkMode('full-dark')">
+                        <div class="black"></div>
+                        <span>Dark</span>
+                    </li>
+                </ul>
+                <hr>
+                <h6>Choose Skin</h6>
+                <ul class="choose-skin list-unstyled">
+                    <li data-theme="purple" [ngClass]="{'active':themeClass == 'theme-purple'}"
+                        (click)="changeTheme('theme-purple')">
+                        <div class="purple"></div>
+                        <span>Purple</span>
+                    </li>
+                    <li data-theme="blue" [ngClass]="{'active':themeClass == 'theme-blue'}"
+                        (click)="changeTheme('theme-blue')">
+                        <div class="blue"></div>
+                        <span>Blue</span>
+                    </li>
+                    <li data-theme="cyan" [ngClass]="{'active':themeClass == 'theme-cyan'}"
+                        (click)="changeTheme('theme-cyan')">
+                        <div class="cyan"></div>
+                        <span>Cyan</span>
+                    </li>
+                    <li data-theme="green" [ngClass]="{'active':themeClass == 'theme-green'}"
+                        (click)="changeTheme('theme-green')">
+                        <div class="green"></div>
+                        <span>Green</span>
+                    </li>
+                    <li data-theme="orange" [ngClass]="{'active':themeClass == 'theme-orange'}"
+                        (click)="changeTheme('theme-orange')">
+                        <div class="orange"></div>
+                        <span>Orange</span>
+                    </li>
+                    <li data-theme="blush" [ngClass]="{'active':themeClass == 'theme-blush'}"
+                        (click)="changeTheme('theme-blush')">
+                        <div class="blush"></div>
+                        <span>Blush</span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
